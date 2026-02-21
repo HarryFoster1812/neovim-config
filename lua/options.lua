@@ -2,6 +2,8 @@ vim.opt.clipboard = 'unnamedplus'   -- use system clipboard
 vim.opt.completeopt = {'menu', 'menuone', 'noselect'}
 vim.opt.mouse = 'a'                 -- allow the mouse to be used in nvim
 
+vim.g.mapleader = " "
+
 -- Tab
 vim.opt.tabstop = 4                 -- number of visual spaces per TAB
 vim.opt.softtabstop = 4             -- number of spaces in tab when editing
@@ -22,3 +24,30 @@ vim.opt.incsearch = true            -- search as characters are entered
 vim.opt.hlsearch = false            -- do not highlight matches
 vim.opt.ignorecase = true           -- ignore case in searches by default
 vim.opt.smartcase = true            -- but make it case sensitive if an uppercase is entered
+
+-- Create a function to handle "Smart Quit"
+_G.smart_quit = function()
+  local bufnr = vim.api.nvim_get_current_buf()
+  local buf_ft = vim.bo[bufnr].filetype
+
+  -- If we are in Neo-tree, just close the window or do nothing
+  if buf_ft == "neo-tree" then
+    vim.cmd("Neotree close")
+    return
+  end
+
+  -- If there's only one buffer left, just quit Neovim
+  local listed_buffers = vim.fn.getbufinfo({buflisted = 1})
+  if #listed_buffers <= 1 then
+    vim.cmd("quit")
+    return
+  end
+
+  -- Otherwise, use the bufdelete plugin (if you installed it) 
+  -- or a standard move-and-delete
+  vim.cmd("bnext")
+  vim.cmd("confirm bdelete #")
+end
+
+-- Map it to a command or abbreviation
+vim.cmd("cnoreabbrev q lua smart_quit()")
