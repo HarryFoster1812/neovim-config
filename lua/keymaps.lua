@@ -49,6 +49,12 @@ vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Help Tags' })
 -- Resume last search
 vim.keymap.set('n', '<leader>fr', builtin.resume, { desc = 'Resume last search' })
 
+-- Show the error message in a floating window
+vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = "Line Diagnostics" })
+
+-- Move between errors
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = "Previous Diagnostic" })
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = "Next Diagnostic" })
 
 -----------------
 -- Visual mode --

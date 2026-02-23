@@ -10,3 +10,11 @@ vim.api.nvim_create_autocmd("LspAttach", {
     end, bufopts)
   end,
 })
+
+-- Add this inside your LSP config function
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
+
+-- Then pass it to your servers
+require('lspconfig').clangd.setup({
+  capabilities = capabilities,
+})
