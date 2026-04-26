@@ -13,3 +13,6 @@ require("lsp")
 
 -- 5. Load colorscheme (optional, or let theme-hub handle it)
 require("colorscheme")
+
+-- 6. Load snippets
+require("luasnip.loaders.from_lua").load({paths = "~/.config/nvim/LuaSnip/"})

@@ -23,7 +23,7 @@ return {
         -- Set to false to let Treesitter take full control.
         additional_vim_regex_highlighting = false,
       },
-      indent = { enable = true },
+      indent = { enable = false },
     })
   end,
 }
