@@ -15,6 +15,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 -- Then pass it to your servers
-require('lspconfig').clangd.setup({
+vim.lsp.config("clangd", {
   capabilities = capabilities,
 })
+
+vim.lsp.enable("clangd")

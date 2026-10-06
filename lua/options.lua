@@ -2,6 +2,8 @@ vim.opt.clipboard = 'unnamedplus'   -- use system clipboard
 vim.opt.completeopt = {'menu', 'menuone', 'noselect'}
 vim.opt.mouse = 'a'                 -- allow the mouse to be used in nvim
 
+vim.opt.undofile = true
+
 vim.g.mapleader = " "
 
 -- Tab
@@ -51,3 +53,6 @@ end
 
 -- Map it to a command or abbreviation
 vim.cmd("cnoreabbrev q lua smart_quit()")
+
+vim.opt_local.spell = true
+vim.opt_local.spelllang = "en_gb"
